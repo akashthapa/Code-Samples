@@ -1,0 +1,64 @@
+<?php
+// $Id$
+/**
+* @file
+* A module for querying specific fields and display data as a block.
+
+*/
+/**
+* Implements hook_help().
+*/
+function first_help($path, $arg) {
+if ($path == 'admin/help#first') {
+return t('Create content type with speicif fields.');
+}
+}
+
+/**
+* Implements hook_block_info().
+*/
+function first_block_info() {
+$blocks = array();
+$blocks['list_modules'] = array(
+'info' => t('Front Slide Show.'),
+'cache' => DRUPAL_NO_CACHE,
+);
+return $blocks;
+}
+
+
+/**
+* Implements hook_block_view().
+*/
+function first_block_view($block_name = '') {
+if ($block_name == 'list_modules') {
+
+$query = new EntityFieldQuery();
+$query->entityCondition('entity_type', 'node')
+	->entityCondition('bundle', 'front_gallery');                    
+	//->fieldCondition('field_yourfield', 'value', $yourvalue, '=')
+	//->fieldOrderBy('field_yourfield', 'value', 'ASC');
+    
+$entity_type = 'node';
+$result = $query->execute();
+	
+if (!empty($result[$entity_type])) {
+	$entities = entity_load($entity_type, array_keys($result[$entity_type]));
+}
+	
+$nodes = entity_load('node', array_keys($result['node']));
+$list = array();
+foreach ($nodes as $node) {
+   //print_r($node);
+   $list[] = "<p>" . $node->field_description['und'][0]['value'] . "<br/> <img src='/drual/jared/sites/default/files/" . str_replace('public://', '', $node->field_small_pic['und'][0]['uri']) . "' /><br/>" . $node->field_big_pic['und'][0]['uri']."</p>";
+}
+
+$theme_args = array('items' => $list, 'type' => 'ul');
+$content = theme('item_list', $theme_args);
+$block = array(
+'subject' => t('Enabled Modules'),
+'content' => $content,
+);
+return $block;
+}
+}
