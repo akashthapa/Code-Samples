@@ -1,1 +1,43 @@
-Code sample work
+# HERE is details of attached files
+
+----------------------------------
+folder : simple Drupal Module
+--
+It is a drupal 7 module to querrying data from tables and show specific datas. I have used this for a slide show, sample is here: http://31337.canadahealthlinks.com/
+
+-----------------------------------
+custom-slideshow.js
+--
+It is a jquery script written for a custom slide show. Origin was created in flash but I totally rewrite the script in jquery
+Sample : http://31337.canadahealthlinks.com/
+---------------------------------------
+
+db.php
+--
+it is a class for working with adodblite.
+
+---------------------------------------
+index.php
+This file I was created for a my own CMS which is designed for databasse less CMS ( No database required, it is fully CMS site builder)
+The role of this page is it works as a single entry point. all request will be redirected by .htaccess to this page.
+
+----------------------------------------
+megamillion.php
+--
+This is class file, scrapes lottery result data from one site, saves in database and exports as a XML. There are lot of regex conditions to filter texts to get right result
+
+----------------------------------------
+schedules_controller.php
+--
+It is a Cakephp's controller class file, there are lot of calender and other functionality added here.
+
+----------------------------------------
+site.php
+--
+it is a class file which handles with XML file, it is written for my own CMS
+
+-----------------------------------------
+controller.class.php
+--
+This is a class file for my own MVC, which I have develop for a small project as for learning point of view.
+It works very well as cakephp and I have develope more than 5 back end sites for my clients.
